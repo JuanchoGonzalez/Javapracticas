@@ -1,21 +1,21 @@
-
-
 // Objeto de un tipo incompleto.
-typedef struct estructura_lista* tipo_lista;
+typedef struct estructura_lista* tipo_lista;  
 
 //Retorna una lista vacía.
 tipo_lista crear( void );
 
 // consulta si la lista es vacia
-int es_vacia( tipo_lista lista );
+int es_vacia( tipo_lista lista );  //se espera un booleano
+
+// int es_vacio(tipo_arreglo arreglo);
 
 // agrega un elemento al comienzo de la lista
-tipo_lista agregar( tipo_lista lista, int elemento );
+tipo_lista* agregar(tipo_lista lista, int elemento);
 
 // inserta un elemento en una posicion particular de la lista.
 /*  0 si es exitosa la operacion
  * -1 si la posicion es invalida. */
-int ins( tipo_lista lista, int elemento, int position);
+int ins( tipo_lista lista, int elemento, int position); 
 
 
 // agrega un elemento al final de la lista
@@ -56,4 +56,10 @@ tipo_lista cola( tipo_lista lista );
 // muestra el contenido de la lista en la salida estandar 'std'
 void mostrar( tipo_lista lista );
 
+// reemplaza un elemento e pasado como parametro con una posicion cualquiera
+// la funcion retorna el elemento anterior digamos el que fue reemplazado
+int reemplazar(tipo_lista lista , int e , int posicion);
+
+// intercambia 2 elementos pasado como parametros y retorna la lista modificada
+tipo_lista intercambiar(tipo_lista lista, int i,int j);
 

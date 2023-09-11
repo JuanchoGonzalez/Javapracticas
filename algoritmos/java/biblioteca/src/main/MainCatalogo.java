@@ -19,10 +19,25 @@ public class MainCatalogo {
 	public static void main(String[] args) {
 		Libro libro1 = new Libro("Isaac Asimov", "The Caves of Steel", 42);
 		Libro libro2 = new Libro("Isaac Asimov", "The Naked Sun", 47);
-		//TODO: agregue más libros
+		Libro libro3 = new Libro("roberto", "aventura", 140);
+		Libro libro4 = new Libro("leandro", "fas", 22);
+		Libro libro5 = new Libro("matias", "fasfsa", 412);
 		Catalogo catalogo = new Catalogo(10);
-		//TODO: pruebe los métodos agregarLibro y buscarPorTitulo
+
+		catalogo.agregarLibro(libro1);
+		catalogo.agregarLibro(libro3);
+    
+		//buscando libro
+        Libro libroEncontrado = catalogo.buscarPorTitulo("aventura");
+
+        // Mostrar el resultado de la búsqueda
+        if (libroEncontrado != null) {
+            System.out.println("Libro encontrado!\n" + libroEncontrado);
+        } else {
+            System.out.println("Libro no encontrado por el título en este catalogo");
+        }
+		//anda mal xq no tengo el metodo toString() aun implementado
 		System.out.println("Catalogo:\n" + catalogo);
-	} 
+	}
 
 }

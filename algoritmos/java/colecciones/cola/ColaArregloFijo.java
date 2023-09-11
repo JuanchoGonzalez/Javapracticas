@@ -1,4 +1,4 @@
-package colecciones.cola;
+package cola;
 
 import java.util.Collection;
 
@@ -27,10 +27,11 @@ public class ColaArregloFijo<T> implements Cola<T> {
 	* @param capacidad la capacidad de la cola
 	* @throws IllegalArgumentException si {@code capacidad} es menor o igual a 0 
 	*/
+	@SuppressWarnings("unchecked")
 	public ColaArregloFijo(int capacidad) {
 		if (capacidad <= 0)
 			throw new IllegalArgumentException("la capacidad debe ser un numero positivo (" + capacidad + ")");
-		arreglo = new Object[capacidad];
+		arreglo = (T[]) new Object[capacidad]; //se construye un arreglo con n elementos dado por capacidad   
 	}
 
 	/**
@@ -50,33 +51,61 @@ public class ColaArregloFijo<T> implements Cola<T> {
 
 	@Override
 	public boolean esVacia() {
-		throw new UnsupportedOperationException("Implementar y eliminar esta sentencia");	
+		return elementos() == 0;	
 	}
 
 	@Override
 	public int elementos() {
-		throw new UnsupportedOperationException("Implementar y eliminar esta sentencia");
+		return elementos;
 	}
 
 	@Override
 	public boolean encolar(T elem) {
-		throw new UnsupportedOperationException("Implementar y eliminar esta sentencia");		
+		if (elementos() >= CAPACIDAD_POR_DEFECTO){
+			return false;
+		}
+		arreglo[elementos]=elem;
+		elementos++;
+		return true;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public T desencolar() {
-		throw new UnsupportedOperationException("Implementar y eliminar esta sentencia");
+		if (esVacia()){
+			throw new IllegalStateException ("La cola esta vacia, imposible desencolar");
+		}
+		if (elementos()==1){
+          vaciar();
+		}
+		T desencolado;
+        desencolado=(T) arreglo[0]; 
+		for (int i=1;i < elementos();i++){
+             arreglo[i-1]=arreglo[i];
+		}
+		arreglo[elementos-1] = null;
+		elementos--;
+
+		return desencolado;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public T primero() {
-		throw new UnsupportedOperationException("Implementar y eliminar esta sentencia");	
+		if (esVacia()){
+			throw new IllegalStateException ("La cola esta vacia, imposible mostrar el primero");
+		}
+		T showFirst;
+        showFirst=(T) arreglo[0]; 
+
+		return showFirst;
 	}
 
 	@Override
 	public void vaciar() {
-		throw new UnsupportedOperationException("Implementar y eliminar esta sentencia");	
-	}
+		arreglo=null;
+		elementos=0;
+  	}
 
 	@Override
 	public boolean repOK() {

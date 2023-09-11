@@ -1,4 +1,4 @@
-package colecciones.lista;
+package lista;
 
 /**
 * La interface {@code Lista} representa una secuencia de objetos. El usuario de esta interface tiene control de acceso, inserción, y eliminación indexada de elementos.
@@ -44,6 +44,7 @@ public interface Lista<T> {
 	* @param indice el indice donde se agrega el elemento
 	* @return {@code true} sii el elemento pudo ser agregado
 	* @throws IndexOutOfBoundsException si {@code indice} &lt; {@code 0}
+	* @throws IndexOutOfBoundsException si indice es menor que 0 o mayor que la cantidad
 	*/
 	public boolean insertar(T elem, int indice);
 

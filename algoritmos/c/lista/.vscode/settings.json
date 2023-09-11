@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "lista_enteros.h": "c",
+        "stdlib.h": "c"
+    }
+}

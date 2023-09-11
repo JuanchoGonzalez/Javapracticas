@@ -60,7 +60,7 @@ public class Libro {
 	* @param titulo : el nuevo título de este Libro.
 	*/
 	public void titulo(String titulo) {
-		this.autor = titulo;
+		this.titulo = titulo;
 	}
 	
 	/**
@@ -89,8 +89,8 @@ public class Libro {
 	
 	@Override
 	public String toString() {
-		throw new UnsupportedOperationException("Debe implementar este método");
-	}
+		return "El autor es:" + autor + "\nEl titulo es:" + titulo + "\nLa cantidad de paginas que tiene son:" + nroPaginas + "\n";
+        }
 	
 	@Override
 	public boolean equals(Object otro) {
@@ -100,7 +100,7 @@ public class Libro {
 			return true;
 		if (!(otro instanceof Libro))
 			return false;
-		Libro otroLibro = (Libro) otro;
+		Libro otroLibro = (Libro) otro; //casteo y verifico antes si es una instancia para q no de error
 		if (otroLibro.autor == null && autor != null)
 			return false;
 		if (otroLibro.titulo == null && titulo != null)
@@ -111,5 +111,5 @@ public class Libro {
 			return false;
 		return otroLibro.nroPaginas == nroPaginas;
 	}
-
+	
 }

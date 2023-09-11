@@ -51,7 +51,8 @@ public class Catalogo {
 	* @return {@code true} sii no hay capacidad disponible.
 	*/
 	public boolean estaLleno() {
-		throw new UnsupportedOperationException("Debe implementar este método");
+		return (nroLibros == CAPACIDAD_POR_DEFECTO+1); //=> por las dudas para no errarle aunque no
+		//throw new UnsupportedOperationException("Debe implementar este método");
 	}
 	
 	/**
@@ -61,7 +62,13 @@ public class Catalogo {
 	* @see #estaLleno()
 	*/
 	public boolean agregarLibro(Libro libro) {
-		throw new UnsupportedOperationException("Debe implementar este método (el Libro debe ser agregado al final)");
+		if (estaLleno()){
+           return false;   
+		}
+        Libro libroAg = (Libro) libro;
+        libros[nroLibros]=libroAg;
+		nroLibros++;
+		return true;
 	}
 	
 	/**
@@ -70,13 +77,32 @@ public class Catalogo {
 	* @return un libro {@code l} que pertenece a este {@code Catalogo} sii {@code l.titulo().equals(titulo)}, {@code null} en caso contrario.
 	*/
 	public Libro buscarPorTitulo(String titulo) {
-		throw new UnsupportedOperationException("Debe implementar este método");
+       for (int i=0;i<nroLibros;i++){
+          if (libros[i].titulo().equals(titulo)) {
+             return libros[i];    
+		  }	 
+	   }
+	   	return null;
 	}
 	
+	/**
+	 * libros es el nombre del atributo que hace referencia al arreglo 
+	 * nroLibros es el nombre del atributo que hace referencia a la cantidad de libros actuales que hay en el catalogo
+	 * el toString() hace mas bonito "syntactic sugar" para cuando querramos mostrar la clase catalogo
+	 */
+    /*
 	@Override
 	public String toString() {
-		throw new UnsupportedOperationException("Debe implementar este método (debe usar el método toString() de Libro)");
-	}
-	
+		Catalogo mostCatalogo = new Catalogo(); //instanciacion de una clase=creacion de objeto mostLibros
+		for (int i=0;i<nroLibros;i++){
+			mostCatalogo.libros[i].toString(); /*muestra el catalogo en base a recorrer el arreglo
+			                                     de el metodo toString definido ya en la clase Libro
+											   */
+											  /*
+											}
 
+	    System.out.println("El catalogo esta formado por: ");
+        return mostCatalogo.toString();
+	}
+    */
 }

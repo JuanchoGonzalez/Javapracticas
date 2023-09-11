@@ -1,25 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "lista_enteros.h"
-
+#include "lista_enteros.h"  // incluir el archivo .h perfiles de funciones 
+                            // ventajas por ejemplo la modularizacion y la reutilizacion
 /*
 	Implementacion de lista de enteros 
 	usando la estructura de nodos (listas linkables).
  */
 
-typedef struct lista_enlazada* nodo;
 
-struct lista_enlazada{
-	int valor;
-	struct lista_enlazada *siguiente;
-};
+
+typedef struct lista_enlazada* nodo; // es para cuando se crea un nodo(variable de tipo nodo ponerle un nombre lindo(alias pj))
+                                     // para no llamar lista_enlazada cuando se manipule la lista, sino llamarlo nodo
+                                     
+struct lista_enlazada{               //lista enlazada con su campo info y next
+	int valor;                       
+	struct lista_enlazada *siguiente; 
+};                                   
 
 /* estructura_lista es la implementacion del tipo_lista 
  declarado en lista_enteros.h.
 */
+
 struct estructura_lista{
 	nodo cabeza;
-	int elementos;
+	int elementos; // la cantidad de elementos 
 };
 
 nodo crear_nodo( int elemento ){
@@ -85,7 +89,7 @@ int ins( tipo_lista lista, int elemento, int posicion){
 }
 
 tipo_lista fin( tipo_lista lista, int elemento ){
-	ins( lista, elemento, lista->elementos );
+	ins( lista, elemento, lista->elementos ); 
 
 	return lista;
 }
@@ -206,3 +210,67 @@ void mostrar( tipo_lista lista ){
 
 	printf( "]" );
 }
+
+int reemplazar(tipo_lista lista, int e, int i){
+	  int aux;
+
+      if ( (es_vacia(lista) != 0)) {
+		return -1;
+	  };
+       
+      if (i < 0  || i > lista->elementos){
+		return -1;
+	  };
+
+      nodo cursor = lista->cabeza;
+
+	  for ( int j = 0; j < i; j++ ){
+		   cursor = cursor->siguiente;
+	  };
+       aux=cursor->valor;
+	   cursor->valor=e;
+
+       return aux;
+	  }
+
+tipo_lista intercambiar(tipo_lista lista, int pos1,int pos2){
+	  int aux;
+
+      if (pos1 == pos2){
+		return lista;
+	  }
+
+	  if ( (es_vacia(lista) != 0)) {
+	       return NULL;
+	  };
+
+      if ((pos1 > (lista->elementos-1) || pos1 < 0) || (pos2 > (lista->elementos-1) || pos2 < 0)){
+         return NULL;
+	  }
+
+	  if (pos1 > pos2) { //acomodo que quede siempre la variable pos1 menor para que ande bien el for
+		aux=pos2;
+        pos2=pos1;
+		pos1=aux;
+	  }
+
+	nodo cursor = lista->cabeza;
+    
+	for (int j = 0; j < pos1 ; j++ ){
+		cursor = cursor->siguiente;
+	};
+
+    nodo cursor2 = lista->cabeza; //podria ir al cursor->siguiente pero tendria que llevar una variable
+	                              //que me diga cuantos elementos pase hasta llegar al primer cursor
+
+	for (int k = 0; k < pos2; k++ ){
+		cursor2 = cursor2->siguiente;
+	};
+
+	aux=cursor->valor;
+    cursor->valor=cursor2->valor;
+    cursor2->valor=aux;
+
+	return lista;
+}
+

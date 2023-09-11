@@ -44,6 +44,17 @@ int main( int argc, char * argv[] )
 	mostrar( lista );
 	printf("\n");
 	
-    
+	printf("reemplazamos por el valor 4 en la posicion 1 \n");
+	int valorAnt = reemplazar(lista,4,0);
+    printf("El valor en la posicion 1 antes era: %d\n",valorAnt);
+	printf("Lista luego de reemplazar ");
+	mostrar(lista);
+    printf("\n");  
+
+    printf("Intercambio las posiciones 1 con 4 \n");
+    intercambiar(lista,1,6);
+	mostrar(lista);
+	printf("\n");
+
   return 0;
 }
